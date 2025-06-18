@@ -1,7 +1,7 @@
 import { Telegraf, Scenes, session } from "telegraf";
 
-import cepWizardScene from "./wizard/cep_wizard.js";
-import addrWizardScene from "./wizard/addr_wizard.js";
+import zipCodeWizardScene from "./wizards/zip.code.wizard.scene.js";
+import addrWizardScene from "./wizards/addr.wizard.scene.js";
 
 import { readFileSync } from "fs";
 
@@ -20,7 +20,7 @@ if (!token) {
 const bot = new Telegraf(token);
 
 // Stages
-const stage = new Scenes.Stage([cepWizardScene, addrWizardScene]);
+const stage = new Scenes.Stage([zipCodeWizardScene, addrWizardScene]);
 
 // Middleware
 bot.use(session());
