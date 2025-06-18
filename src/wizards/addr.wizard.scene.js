@@ -44,7 +44,7 @@ confirmSearch.action("s", async (ctx) => {
     await ctx.reply(
       `❌ A consulta foi cancelada devido ao envio de dados inválidos.`
     );
-    return ctx.scene.leave();
+    await ctx.scene.leave();
   }
 
   try {
@@ -60,7 +60,7 @@ confirmSearch.action("s", async (ctx) => {
           `O CEP para o endereço indicado é <strong><code>${ctx.wizard.state.response[0].cep}</code></strong>`
         );
         await ctx.reply(`👋 Até logo`);
-        return ctx.scene.leave();
+        await tx.scene.leave();
       } else {
         await ctx.reply(
           "Escolha um dos resultados:",
@@ -95,7 +95,7 @@ confirmSearch.action("n", async (ctx) => {
   await ctx.reply(
     `${ctx.update.callback_query.from.first_name}, a operação foi cancelada com sucesso.`
   );
-  return ctx.scene.leave();
+  await ctx.scene.leave();
 });
 
 const chooseResult = new Composer();
@@ -106,7 +106,7 @@ chooseResult.action(/\d{5}-\d{3}/, async (ctx) => {
     `O CEP para o endereço indicado é <strong><code>${ctx.match[0]}</code></strong>`
   );
   await ctx.reply(`👋 Até logo`);
-  return ctx.scene.leave();
+  await ctx.scene.leave();
 });
 
 // Conversa principal
@@ -145,7 +145,7 @@ const addrWizardScene = new Scenes.WizardScene(
 
 addrWizardScene.command("sair", async (ctx) => {
   await ctx.reply(`👋 Até logo`);
-  return ctx.scene.leave();
+  await ctx.scene.leave();
 });
 
 export default addrWizardScene;
