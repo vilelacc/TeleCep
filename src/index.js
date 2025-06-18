@@ -5,7 +5,7 @@ import addrWizardScene from "./wizard/addr_wizard.js";
 
 import { readFileSync } from "fs";
 
-const token = process.env.token;
+const token = process.env.BOT_TOKEN;
 
 const pkg = JSON.parse(
   readFileSync(new URL("../package.json", import.meta.url))
