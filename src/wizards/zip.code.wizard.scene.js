@@ -15,7 +15,7 @@ searchZipCodeStep.hears(/\d{5}-?\d{3}/, async (ctx) => {
       await ctx.reply(
         `Hmm... ${userName}, esse CEP parece estar no formato certo, mas não encontramos ele. 🧐`
       );
-      await ctx.scene.leave();
+      return await ctx.scene.leave();
     } else {
       let address = `${data.logradouro}`;
 
@@ -28,14 +28,14 @@ searchZipCodeStep.hears(/\d{5}-?\d{3}/, async (ctx) => {
       await ctx.replyWithHTML(
         `🔍 Resultado encontrado para o CEP <b>${data.cep}</b>:\n\n<code>${address}</code>`
       );
-      await ctx.scene.leave();
+      return await ctx.scene.leave();
     }
   } catch (error) {
     console.error(error);
     await ctx.reply(
       `${userName}, algo deu errado, mas não se preocupe - não é culpa sua. Tente novamente mais tarde, por favor.`
     );
-    await ctx.scene.leave();
+    return await ctx.scene.leave();
   }
 });
 
@@ -47,14 +47,14 @@ const zipCodeWizardScene = new Scenes.WizardScene(
     ctx.reply(
       "📮 Informe o CEP que deseja consultar ou /sair para cancelar a operação."
     );
-    ctx.wizard.next();
+    return ctx.wizard.next();
   },
   searchZipCodeStep
 );
 
 zipCodeWizardScene.command("sair", async (ctx) => {
   await ctx.reply(`👋 Até logo`);
-  await ctx.scene.leave();
+  return await ctx.scene.leave();
 });
 
 export default zipCodeWizardScene;

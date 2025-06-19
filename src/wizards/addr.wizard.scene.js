@@ -10,7 +10,7 @@ selectState.action(/[A-Z]{2}/, async (ctx) => {
   await ctx.editMessageReplyMarkup({ reply_markup: null });
   ctx.wizard.state.federativeUnit = ctx.match[0].toLocaleLowerCase();
   await ctx.reply("Qual nome da cidade?");
-  ctx.wizard.next();
+  return ctx.wizard.next();
 });
 
 selectState.use(async (ctx) => {
@@ -25,7 +25,7 @@ chooseResult.action(/\d{5}-\d{3}/, async (ctx) => {
     `O CEP para o endereço indicado é <strong><code>${ctx.match[0]}</code></strong>`
   );
   await ctx.reply(`👋 Até logo`);
-  await ctx.scene.leave();
+  return await ctx.scene.leave();
 });
 
 chooseResult.use(async (ctx) => {
@@ -45,13 +45,13 @@ const addrWizardScene = new Scenes.WizardScene(
         { columns: 2 }
       )
     );
-    ctx.wizard.next();
+    return ctx.wizard.next();
   },
   selectState,
   async (ctx) => {
     ctx.wizard.state.city = ctx.message.text.toLocaleLowerCase();
     await ctx.reply("Qual nome da rua?");
-    ctx.wizard.next();
+    return ctx.wizard.next();
   },
   async (ctx) => {
     ctx.wizard.state.street = ctx.message.text.toLocaleLowerCase();
@@ -70,8 +70,7 @@ const addrWizardScene = new Scenes.WizardScene(
       await ctx.reply(
         `❌ A consulta foi cancelada devido ao envio de dados inválidos.`
       );
-      await ctx.scene.leave();
-      return
+      return await ctx.scene.leave();
     }
 
     try {
@@ -83,13 +82,13 @@ const addrWizardScene = new Scenes.WizardScene(
         await ctx.reply(
           "Ops! Algo deu errado com sua consulta. Confira os dados e tente de novo, por favor."
         );
-        await ctx.scene.leave();
+        return await ctx.scene.leave();
       } else if (ctx.wizard.state.response.length === 1) {
         await ctx.replyWithHTML(
           `O CEP para o endereço indicado é <strong><code>${ctx.wizard.state.response[0].cep}</code></strong>`
         );
         await ctx.reply(`👋 Até logo`);
-        await ctx.scene.leave();
+        return await ctx.scene.leave();
       } else {
         await ctx.reply(
           "Escolha um dos resultados:",
@@ -103,14 +102,14 @@ const addrWizardScene = new Scenes.WizardScene(
             { columns: 1 }
           )
         );
-        ctx.wizard.next();
+        return ctx.wizard.next();
       }
     } catch (error) {
       console.error(error);
       await ctx.reply(
         "Ops! Algo deu errado com sua consulta. Confira os dados e tente de novo, por favor."
       );
-      await ctx.scene.leave();
+      return await ctx.scene.leave();
     }
   },
   chooseResult
@@ -118,7 +117,7 @@ const addrWizardScene = new Scenes.WizardScene(
 
 addrWizardScene.command("sair", async (ctx) => {
   await ctx.reply(`👋 Até logo`);
-  await ctx.scene.leave();
+  return await ctx.scene.leave();
 });
 
 export default addrWizardScene;
