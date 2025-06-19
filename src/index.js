@@ -26,14 +26,6 @@ const stage = new Scenes.Stage([zipCodeWizardScene, addrWizardScene]);
 bot.use(session());
 bot.use(stage.middleware());
 bot.use(Telegraf.log());
-// bot.use(async (ctx, next) => {
-//   if (ctx.update.message.from.id === Number(process.env.id)) {
-//     await ctx.reply("Ao seu dispor, mestre!");
-//     next()
-//   } else {
-//     return await ctx.reply("Sinto muito, mas eu só falo com o meu mestre!");
-//   }
-// });
 
 // Commands
 bot.command("cep", async (ctx) => {
