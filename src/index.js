@@ -31,6 +31,7 @@ bot.use(Telegraf.log());
 bot.command("cep", async (ctx) => {
   await ctx.scene.enter("cep");
 });
+
 bot.command("addr", async (ctx) => {
   await ctx.scene.enter("addr");
 });
