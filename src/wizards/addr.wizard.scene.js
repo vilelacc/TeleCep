@@ -1,7 +1,7 @@
 import { Scenes, Composer, Markup } from "telegraf";
-import axios from "axios";
 import federativeUnits from "../helpers/federative.units.js";
 import dataSchema from "../helpers/data.validation.js";
+import searchByAddress from "../helpers/search.by.address.js";
 
 // Selecionar o Estado
 const selectState = new Composer();
@@ -26,6 +26,10 @@ chooseResult.action(/\d{5}-\d{3}/, async (ctx) => {
   );
   await ctx.reply(`👋 Até logo`);
   await ctx.scene.leave();
+});
+
+chooseResult.use(async (ctx) => {
+  await ctx.reply("❌ Dados inválidos. Selecione um resultado da lista.");
 });
 
 // Conversa principal
@@ -71,9 +75,7 @@ const addrWizardScene = new Scenes.WizardScene(
     }
 
     try {
-      const { data } = await axios.get(
-        `https://viacep.com.br/ws/${federativeUnit}/${city}/${street}/json/`
-      );
+      const data  = await searchByAddress(federativeUnit, city, street)
       ctx.wizard.state.response = data;
 
       // busca feita com sucesso, mas sem resultados
