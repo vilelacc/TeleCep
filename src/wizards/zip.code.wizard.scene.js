@@ -1,5 +1,5 @@
 import { Scenes, Composer, Markup } from "telegraf";
-import axios from "axios";
+import searchByZipCode from "../helpers/search.by.zip.code.js";
 
 const searchZipCodeStep = new Composer();
 
@@ -9,9 +9,7 @@ searchZipCodeStep.hears(/\d{5}-?\d{3}/, async (ctx) => {
   const userName = ctx.update.message.from.first_name;
 
   try {
-    const { data } = await axios.get(
-      `https://viacep.com.br/ws/${zipCode}/json/`
-    );
+    const data = await searchByZipCode(zipCode);
 
     if (data.erro) {
       await ctx.reply(
@@ -28,7 +26,7 @@ searchZipCodeStep.hears(/\d{5}-?\d{3}/, async (ctx) => {
       address += `, ${data.bairro} - ${data.localidade}/${data.uf}`;
 
       await ctx.replyWithHTML(
-        `🔍 Resultados encontrados para o CEP <b>${data.cep}</b>:\n\n<code>${address}</code>`
+        `🔍 Resultado encontrado para o CEP <b>${data.cep}</b>:\n\n<code>${address}</code>`
       );
       await ctx.scene.leave();
     }
