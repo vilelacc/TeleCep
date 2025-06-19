@@ -1,4 +1,4 @@
-import { Scenes, Composer, Markup } from "telegraf";
+import { Scenes, Composer } from "telegraf";
 import searchByZipCode from "../helpers/search.by.zip.code.js";
 
 const searchZipCodeStep = new Composer();
