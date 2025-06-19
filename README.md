@@ -24,7 +24,7 @@ Chatbot para consultas de CEPs, feito com JavaScript usando o [Telegraf.js](http
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/vilelajs/TeleCep.git
+git clone https://github.com/vilelacc/TeleCep.git
 cd TeleCep
 ```
 
