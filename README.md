@@ -1,6 +1,6 @@
 # 🤖 [@TeleCEP](https://telegram.me/TeleCepBot) 
 
-Chatbot para consultas de CEPs, feito com JavaScript usando o [Telegraf.js](https://telegraf.js.org/). O bot está integrado à API [ViaCEP](https://viacep.com.br/), permitindo buscar endereços por CEP e vice-versa de forma rápida e prática. A aplicação também utiliza o [Joi](https://joi.dev/) para validar os dados informados pelo usuário, garantindo maior confiabilidade nas consultas.
+Chatbot para consultas de CEPs, feito com JavaScript usando o [Telegraf.js](https://telegraf.js.org/). O bot está integrado à API [ViaCEP](https://viacep.com.br/), permitindo buscar endereços por CEP e vice-versa de forma rápida e prática. 
 
 ## ✨ Funcionalidades
 
