@@ -6,8 +6,6 @@ Chatbot para consultas de CEPs, feito com JavaScript usando o [Telegraf.js](http
 
 * 🔍 Consulta de endereços a partir de um CEP.
 * 🧭 Busca de CEPs com base em informações de endereço (UF, cidade e logradouro).
-* 💬 Interface simples via Telegram.
-* ✅ Validação de dados.
 
 ## 🚀 Comandos Disponíveis
 
