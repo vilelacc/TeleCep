@@ -44,7 +44,4 @@ BOT_TOKEN=seu_token_aqui
 ```bash
 npm start
 ```
-
-## 👤 Autor
-Desenvolvido por [vilela](https://github.com/vilelacc) com 💙.
-
+<p align="center">Made with 💙.</p>
