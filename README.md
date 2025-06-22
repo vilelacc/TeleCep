@@ -44,4 +44,4 @@ BOT_TOKEN=seu_token_aqui
 ```bash
 npm start
 ```
-<p align="center">Made with 💙.</p>
+<p align="center">Made with 💙</p>
