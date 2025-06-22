@@ -37,7 +37,7 @@ npm i
 BOT_TOKEN=seu_token_aqui
 ```
 > [!IMPORTANT]  
-> Inicie uma conversa com o ``BotFather`` para obter o  token do seu bot.
+> Inicie uma conversa com o [@BotFather](https://telegram.me/BotFather) para obter o  token do seu bot.
 
 4. Execute o bot:
 
