@@ -13,7 +13,7 @@ const pkg = JSON.parse(
 
 if (!token) {
   throw new Error(
-    "Token do bot não definido. Verifique se a variável de ambiente 'token' está configurada corretamente."
+    "Token do bot não definido. Verifique se a variável de ambiente 'BOT_TOKEN' está configurada corretamente."
   );
 }
 
