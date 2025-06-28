@@ -105,7 +105,7 @@ const addrWizardScene = new Scenes.WizardScene(
         return ctx.wizard.next();
       }
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
       await ctx.reply(
         "Ops! Algo deu errado com sua consulta. Confira os dados e tente de novo, por favor."
       );

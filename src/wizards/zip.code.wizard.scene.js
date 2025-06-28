@@ -31,7 +31,7 @@ searchZipCodeStep.hears(/\d{5}-?\d{3}/, async (ctx) => {
       return await ctx.scene.leave();
     }
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
     await ctx.reply(
       `${userName}, algo deu errado, mas não se preocupe - não é culpa sua. Tente novamente mais tarde, por favor.`
     );
