@@ -3,13 +3,9 @@ import { Telegraf, Scenes, session } from "telegraf";
 import zipCodeWizardScene from "./wizards/zip.code.wizard.scene.js";
 import addrWizardScene from "./wizards/addr.wizard.scene.js";
 
-import { readFileSync } from "fs";
+import { about, bugs } from "./helpers/messages.default.js";
 
 const token = process.env.BOT_TOKEN;
-
-const pkg = JSON.parse(
-  readFileSync(new URL("../package.json", import.meta.url))
-);
 
 if (!token) {
   throw new Error(
@@ -28,6 +24,13 @@ bot.use(stage.middleware());
 bot.use(Telegraf.log());
 
 // Commands
+bot.start(async (ctx) => {
+  const nameUser = ctx.update.message.from.first_name;
+  await ctx.replyWithHTML(
+    `E aí, ${nameUser}! 👋 Tudo certo?\n\nVocê pode me controlar enviando estes comandos:\n\n<strong>CEP</strong>\n/cep - Buscar por CEP\n/addr - Buscar por endereço\n\n<strong>Informações & Ajuda</strong>\n/bugs - Orientações de contato\n/about - Sobre este projeto`
+  );
+});
+
 bot.command("cep", async (ctx) => {
   await ctx.scene.enter("cep");
 });
@@ -37,25 +40,11 @@ bot.command("addr", async (ctx) => {
 });
 
 bot.command("about", async (ctx) => {
-  await ctx.reply(
-    `🤖 Bot\nNome: TeleCEP\nUsername: @TeleCepBot\nVersão: ${pkg.version}\n\n👤 Desenvolvedor\nNome: ${pkg.author}\nLinkedin: https://www.linkedin.com/in/vilelacc/`
-  );
+  await ctx.reply(about);
 });
 
-bot.command("help", async (ctx) => {
-  await ctx.replyWithHTML(
-    `<b>🛠 Ajuda & Suporte</b>\n\n` +
-      `🐞 Encontrou um bug ou tem alguma sugestão?\n` +
-      `Abra uma <a href="${pkg.bugs.url}">issue no GitHub</a> para que possamos melhorar o bot!`
-  );
-});
-
-bot.start(async (ctx) => {
-  const nameUser = ctx.update.message.from.first_name;
-
-  await ctx.reply(
-    `E aí, ${nameUser}! 👋 Tudo certo?\n\nVocê pode me controlar enviando estes comandos:\n\n📬 CEP:\n/cep - Buscar por CEP\n/addr - Buscar por endereço\n\n🆘 Ajuda & Suporte:\n/help - Orientações de contato\n/about - Sobre este projeto\n\n🔥Boas-vindas:\n/start - Iniciar o bot`
-  );
+bot.command("bugs", async (ctx) => {
+  await ctx.replyWithHTML(bugs);
 });
 
 bot.on(
