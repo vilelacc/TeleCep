@@ -27,7 +27,7 @@ bot.use(Telegraf.log());
 bot.start(async (ctx) => {
   const nameUser = ctx.update.message.from.first_name;
   await ctx.replyWithHTML(
-    `E aí, ${nameUser}! 👋 Tudo certo?\n\nVocê pode me controlar enviando estes comandos:\n\n<strong>CEP</strong>\n/cep - Buscar por CEP\n/addr - Buscar por endereço\n\n<strong>Informações & Ajuda</strong>\n/bugs - Orientações de contato\n/about - Sobre este projeto`
+    `E aí, ${nameUser}! 👋 Tudo certo?\n\nVocê pode me controlar enviando estes comandos:\n\n<strong>Código de Endereçamento Postal</strong>\n/cep - Buscar por CEP\n/addr - Buscar por endereço\n\n<strong>Ajuda & Suporte</strong>\n/bugs - Orientações de contato\n/about - Sobre este projeto`
   );
 });
 
@@ -40,7 +40,7 @@ bot.command("addr", async (ctx) => {
 });
 
 bot.command("about", async (ctx) => {
-  await ctx.reply(about);
+  await ctx.replyWithHTML(about);
 });
 
 bot.command("bugs", async (ctx) => {
