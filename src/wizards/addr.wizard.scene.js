@@ -8,7 +8,7 @@ const selectState = new Composer();
 
 selectState.action(/[A-Z]{2}/, async (ctx) => {
   await ctx.editMessageReplyMarkup({ reply_markup: null });
-  ctx.wizard.state.federativeUnit = ctx.match[0].toLocaleLowerCase();
+  ctx.wizard.state.federativeUnit = ctx.match[0].toLowerCase();
   await ctx.reply("Qual nome da cidade?");
   return ctx.wizard.next();
 });
@@ -49,12 +49,12 @@ const addrWizardScene = new Scenes.WizardScene(
   },
   selectState,
   async (ctx) => {
-    ctx.wizard.state.city = ctx.message.text.toLocaleLowerCase();
+    ctx.wizard.state.city = ctx.message.text.toLowerCase();
     await ctx.reply("Qual nome da rua?");
     return ctx.wizard.next();
   },
   async (ctx) => {
-    ctx.wizard.state.street = ctx.message.text.toLocaleLowerCase();
+    ctx.wizard.state.street = ctx.message.text.toLowerCase();
     // pegando os valores fornecidos pelo usuário
     const { federativeUnit, city, street } = ctx.wizard.state;
 
@@ -74,7 +74,7 @@ const addrWizardScene = new Scenes.WizardScene(
     }
 
     try {
-      const data  = await searchByAddress(federativeUnit, city, street)
+      const data = await searchByAddress(federativeUnit, city, street);
       ctx.wizard.state.response = data;
 
       // busca feita com sucesso, mas sem resultados
