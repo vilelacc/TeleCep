@@ -49,12 +49,12 @@ const addrWizardScene = new Scenes.WizardScene(
   },
   selectState,
   async (ctx) => {
-    ctx.wizard.state.city = ctx.message.text.toLowerCase();
+    ctx.wizard.state.city = ctx.message.text.toLowerCase().trim();
     await ctx.reply("Qual nome da rua?");
     return ctx.wizard.next();
   },
   async (ctx) => {
-    ctx.wizard.state.street = ctx.message.text.toLowerCase();
+    ctx.wizard.state.street = ctx.message.text.toLowerCase().trim();
     // pegando os valores fornecidos pelo usuário
     const { federativeUnit, city, street } = ctx.wizard.state;
 
