@@ -26,7 +26,7 @@ searchZipCodeStep.hears(/\d{5}-?\d{3}/, async (ctx) => {
       address += `, ${data.bairro} - ${data.localidade}/${data.uf}`;
 
       await ctx.replyWithHTML(
-        `🔍 Resultado encontrado para o CEP <b>${data.cep}</b>:\n\n<code>${address}</code>`
+        `<strong>Resultado encontrado para o CEP <b>${data.cep}</b></strong>:\n\n<strong>Endereço: </strong><code>${address}</code>\n\n<strong>Clique no endereço para copiá-lo facilmente!</strong>`
       );
       return await ctx.scene.leave();
     }

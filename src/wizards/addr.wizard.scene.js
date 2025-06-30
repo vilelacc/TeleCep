@@ -22,7 +22,7 @@ const chooseResult = new Composer();
 chooseResult.action(/\d{5}-\d{3}/, async (ctx) => {
   await ctx.editMessageReplyMarkup();
   await ctx.replyWithHTML(
-    `O CEP para o endereço indicado é <strong><code>${ctx.match[0]}</code></strong>`
+    `O CEP para o endereço indicado é <strong><code>${ctx.match[0]}</code></strong>\n\n<strong>Clique no CEP para copiá-lo facilmente!</strong>`
   );
   await ctx.reply(`👋 Até logo`);
   return await ctx.scene.leave();
@@ -85,7 +85,7 @@ const addrWizardScene = new Scenes.WizardScene(
         return await ctx.scene.leave();
       } else if (ctx.wizard.state.response.length === 1) {
         await ctx.replyWithHTML(
-          `O CEP para o endereço indicado é <strong><code>${ctx.wizard.state.response[0].cep}</code></strong>`
+          `O CEP para o endereço indicado é <strong><code>${ctx.wizard.state.response[0].cep}</code></strong>\n\n<strong>Clique no CEP para copiá-lo facilmente!</strong>`
         );
         await ctx.reply(`👋 Até logo`);
         return await ctx.scene.leave();
