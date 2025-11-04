@@ -1,0 +1,26 @@
+{
+  "name": "telecep",
+  "version": "1.0.0",
+  "description": "Este bot consulta CEPs e retorna endereço, bairro, cidade e estado de forma rápida e fácil.",
+  "homepage": "https://github.com/vilelacc/TeleCep#readme",
+  "bugs": {
+    "url": "https://github.com/vilelacc/TeleCep/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vilelacc/TeleCep.git"
+  },
+  "license": "GPL-3.0",
+  "author": "vilela",
+  "type": "module",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node --env-file=.env ./src/bot.js"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "axios-cache-interceptor": "^1.8.0",
+    "joi": "^17.13.3",
+    "telegraf": "^4.16.3"
+  }
+}
