@@ -4,7 +4,7 @@ const pkg = JSON.parse(
   readFileSync(new URL("../../package.json", import.meta.url))
 );
 
-const about = `🤖 Bot\nNome: TeleCEP\nUsername: @TeleCepBot\nVersão: ${pkg.version}\n\n👨‍💻 Desenvolvedor\nNome: ${pkg.author}\nLinkedin: <a href="https://www.linkedin.com/in/vilelacc/">@vilelacc</a>`;
+const about = `🤖 Bot\nNome: TeleCEP\nUsername: @TeleCepBot\nVersão: ${pkg.version}\n\n👨‍💻 Desenvolvedor\nNome: ${pkg.author}`;
 
 const bugs =
   `🐞 Encontrou um bug ou tem alguma sugestão?\n` +
